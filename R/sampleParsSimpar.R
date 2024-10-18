@@ -9,7 +9,7 @@
 ##' @return A table with sampled model parameters
 ##' @export
 
-sampleParsSimpar <- function(file.mod,nsim,format="ext"){
+sampleParsSimpar <- function(file.mod,nsim,seed=123456789,format="ext"){
 
     DF2 <- NULL 
     iblock  <- NULL
@@ -48,6 +48,7 @@ sampleParsSimpar <- function(file.mod,nsim,format="ext"){
                NMdata::dt2mat)
 
     ## use simpar to sample params
+    set.seed(seed)
     pars <- simpar::simpar(
                         nsim = nsim,
                         theta = pars[par.type=="THETA",value],
